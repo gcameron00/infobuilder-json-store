@@ -1,0 +1,47 @@
+{
+  "catalog": {
+    "name": "Demo Storefront",
+    "currency": "USD",
+    "updated": "2026-05-01T09:30:00Z"
+  },
+  "products": [
+    {
+      "id": "SKU-001",
+      "name": "Mechanical Keyboard",
+      "price": 129.99,
+      "inStock": true,
+      "tags": ["peripherals", "input", "rgb"],
+      "specs": {
+        "switches": "linear",
+        "layout": "75%",
+        "backlight": true
+      }
+    },
+    {
+      "id": "SKU-002",
+      "name": "Ultrawide Monitor",
+      "price": 749.0,
+      "inStock": false,
+      "tags": ["display", "ultrawide"],
+      "specs": {
+        "resolution": "3440x1440",
+        "refreshHz": 144,
+        "panel": "IPS"
+      }
+    },
+    {
+      "id": "SKU-003",
+      "name": "Wireless Mouse",
+      "price": 59.5,
+      "inStock": true,
+      "tags": ["peripherals", "wireless"],
+      "specs": {
+        "dpi": 16000,
+        "batteryHours": 70,
+        "buttons": 7
+      }
+    }
+  ],
+  "totalCount": 3,
+  "notes": null
+}

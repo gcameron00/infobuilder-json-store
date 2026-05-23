@@ -1,0 +1,28 @@
+{
+  "app": {
+    "name": "InfoBuilder",
+    "version": "0.1.0",
+    "environment": "development"
+  },
+  "features": {
+    "darkMode": true,
+    "experimentalSearch": false,
+    "betaUploads": false
+  },
+  "services": {
+    "api": {
+      "baseUrl": "https://api.example.com",
+      "timeoutMs": 5000,
+      "retries": 3
+    },
+    "cache": {
+      "provider": "memory",
+      "ttlSeconds": 300
+    }
+  },
+  "limits": {
+    "maxFileSizeKb": 1024,
+    "maxFilesPerUser": 50,
+    "allowedTypes": ["application/json", "text/plain"]
+  }
+}

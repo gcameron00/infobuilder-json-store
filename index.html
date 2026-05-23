@@ -1,17 +1,59 @@
 <!doctype html>
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="color-scheme" content="light dark" />
-    <title>Home</title>
+    <title>InfoBuilder JSON Store</title>
     <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="/assets/css/styles.css">
     <script defer src="/assets/js/main.js"></script>
   </head>
   <body>
-    <h1>It works 🎉</h1>
-    <p>This site is deployed using Cloudflare Pages.</p>
-    <p><a href="/about/">About</a></p>
+    <header class="site-header">
+      <div class="site-header__inner">
+        <a class="site-title" href="/">
+          <span class="site-title__mark">{ }</span>
+          InfoBuilder JSON Store
+        </a>
+        <nav class="site-nav">
+          <a href="/">Browse</a>
+          <a href="/about/">About</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="layout">
+      <aside class="sidebar" aria-label="JSON files">
+        <h2 class="sidebar__heading">Files</h2>
+        <ul id="file-list" class="file-list" aria-live="polite">
+          <li class="file-list__status">Loading…</li>
+        </ul>
+      </aside>
+
+      <section class="viewer" aria-label="JSON viewer">
+        <div class="viewer__toolbar" id="viewer-toolbar" hidden>
+          <div class="viewer__meta">
+            <h2 id="viewer-title" class="viewer__title"></h2>
+            <p id="viewer-description" class="viewer__description"></p>
+            <p class="viewer__path">
+              <code id="viewer-path"></code>
+              <a id="viewer-raw" href="#" target="_blank" rel="noopener">raw</a>
+            </p>
+          </div>
+          <div class="viewer__actions">
+            <button type="button" id="expand-all">Expand all</button>
+            <button type="button" id="collapse-all">Collapse all</button>
+          </div>
+        </div>
+        <div id="viewer" class="viewer__content">
+          <p class="viewer__placeholder">Select a file from the list to view its contents.</p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>Static viewer · Hosted on Cloudflare Pages · <a href="/about/">About this project</a></p>
+    </footer>
   </body>
 </html>

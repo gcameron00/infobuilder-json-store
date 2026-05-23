@@ -1,0 +1,8 @@
+# Cloudflare Pages headers
+# Ensure JSON files are served with the correct Content-Type, so the "raw"
+# link opens nicely in the browser instead of downloading or rendering as
+# text/plain.
+
+/data/*.json
+  Content-Type: application/json; charset=utf-8
+  Cache-Control: public, max-age=300

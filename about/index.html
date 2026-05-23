@@ -1,15 +1,71 @@
 <!doctype html>
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="color-scheme" content="light dark" />
-    <title>About</title>
+    <title>About · InfoBuilder JSON Store</title>
     <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="/assets/css/styles.css">
   </head>
   <body>
-    <h1>About</h1>
-    <p><a href="/">Back home</a></p>
+    <header class="site-header">
+      <div class="site-header__inner">
+        <a class="site-title" href="/">
+          <span class="site-title__mark">{ }</span>
+          InfoBuilder JSON Store
+        </a>
+        <nav class="site-nav">
+          <a href="/">Browse</a>
+          <a href="/about/" aria-current="page">About</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="prose">
+      <h1>About</h1>
+      <p>
+        <strong>InfoBuilder JSON Store</strong> is a tiny, read-only viewer for JSON
+        files that live in this repository. It is part of the wider
+        <em>InfoBuilder</em> project, which tracks a small collection of JSON
+        documents over time.
+      </p>
+
+      <h2>What it does</h2>
+      <ul>
+        <li>Lists JSON files stored under <code>/data</code>.</li>
+        <li>Displays a selected file with syntax-coloured, collapsible sections.</li>
+        <li>Provides a direct link to the raw JSON for download or copy/paste.</li>
+      </ul>
+
+      <h2>What it deliberately does not do</h2>
+      <ul>
+        <li>No editing, uploading, or deleting of files in the browser.</li>
+        <li>No backend, database, or build step — pure HTML, CSS, and vanilla JS.</li>
+        <li>No third-party JavaScript frameworks or runtime dependencies.</li>
+      </ul>
+
+      <h2>How files get added</h2>
+      <p>
+        Files are added via pull request to the repository. The viewer reads
+        <code>/data/index.json</code>, which is a small manifest listing every
+        file to surface, along with a title and short description. Adding a new
+        file means dropping the JSON into <code>/data/</code> and adding an entry
+        to the manifest.
+      </p>
+
+      <h2>Hosting</h2>
+      <p>
+        The site is deployed via <a href="https://pages.cloudflare.com/">Cloudflare Pages</a>.
+        Every push to <code>main</code> is published as static assets — there is no
+        server-side rendering.
+      </p>
+
+      <p><a href="/">← Back to file list</a></p>
+    </main>
+
+    <footer class="site-footer">
+      <p>Static viewer · Hosted on Cloudflare Pages</p>
+    </footer>
   </body>
 </html>

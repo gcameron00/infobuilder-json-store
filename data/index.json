@@ -1,0 +1,19 @@
+{
+  "files": [
+    {
+      "path": "sample-product.json",
+      "title": "Sample Product Catalog",
+      "description": "A small product catalog showing nested arrays, prices, and stock data."
+    },
+    {
+      "path": "sample-user-profile.json",
+      "title": "Sample User Profile",
+      "description": "A user profile with contact details, preferences, and recent activity."
+    },
+    {
+      "path": "sample-config.json",
+      "title": "Sample Application Config",
+      "description": "A typical application configuration with feature flags, services, and limits."
+    }
+  ]
+}

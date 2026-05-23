@@ -1,0 +1,33 @@
+{
+  "user": {
+    "id": 4821,
+    "username": "ada.lovelace",
+    "displayName": "Ada Lovelace",
+    "verified": true,
+    "joined": "2024-11-12"
+  },
+  "contact": {
+    "email": "ada@example.com",
+    "phone": null,
+    "address": {
+      "street": "1 Analytical Lane",
+      "city": "London",
+      "country": "UK",
+      "postcode": "SW1A 1AA"
+    }
+  },
+  "preferences": {
+    "theme": "auto",
+    "language": "en-GB",
+    "notifications": {
+      "email": true,
+      "push": false,
+      "sms": false
+    }
+  },
+  "recentActivity": [
+    { "type": "login", "at": "2026-05-22T08:14:00Z" },
+    { "type": "comment", "at": "2026-05-21T17:02:00Z", "target": "post/119" },
+    { "type": "upload", "at": "2026-05-20T11:45:00Z", "file": "notes.md" }
+  ]
+}

@@ -1,9 +1,9 @@
 {
   "version": 1,
-  "exportedAt": "2026-05-23T18:12:16.139Z",
+  "exportedAt": "2026-05-23T00:00:00.000Z",
   "store": {
     "name": "Music",
-    "description": "Bands, members, and albums — centred on New Order and connected artists."
+    "description": "Bands, members, albums, and singles — centred on New Order and connected artists."
   },
   "entityTypes": [
     {
@@ -11,36 +11,11 @@
       "display_name": "Album",
       "icon": "disc",
       "fields": [
-        {
-          "name": "title",
-          "data_type": "string",
-          "required": true,
-          "display_order": 0
-        },
-        {
-          "name": "release_year",
-          "data_type": "string",
-          "required": true,
-          "display_order": 1
-        },
-        {
-          "name": "label",
-          "data_type": "string",
-          "required": false,
-          "display_order": 2
-        },
-        {
-          "name": "genres",
-          "data_type": "string",
-          "required": false,
-          "display_order": 3
-        },
-        {
-          "name": "description",
-          "data_type": "text",
-          "required": false,
-          "display_order": 4
-        }
+        { "name": "title",        "data_type": "string", "required": true,  "display_order": 0 },
+        { "name": "release_year", "data_type": "string", "required": true,  "display_order": 1 },
+        { "name": "label",        "data_type": "string", "required": false, "display_order": 2 },
+        { "name": "genres",       "data_type": "string", "required": false, "display_order": 3 },
+        { "name": "description",  "data_type": "text",   "required": false, "display_order": 4 }
       ]
     },
     {
@@ -48,42 +23,12 @@
       "display_name": "Band",
       "icon": "users",
       "fields": [
-        {
-          "name": "name",
-          "data_type": "string",
-          "required": true,
-          "display_order": 0
-        },
-        {
-          "name": "formed_year",
-          "data_type": "string",
-          "required": false,
-          "display_order": 1
-        },
-        {
-          "name": "disbanded_year",
-          "data_type": "string",
-          "required": false,
-          "display_order": 2
-        },
-        {
-          "name": "origin",
-          "data_type": "string",
-          "required": false,
-          "display_order": 3
-        },
-        {
-          "name": "genres",
-          "data_type": "string",
-          "required": false,
-          "display_order": 4
-        },
-        {
-          "name": "description",
-          "data_type": "text",
-          "required": false,
-          "display_order": 5
-        }
+        { "name": "name",           "data_type": "string", "required": true,  "display_order": 0 },
+        { "name": "formed_year",    "data_type": "string", "required": false, "display_order": 1 },
+        { "name": "disbanded_year", "data_type": "string", "required": false, "display_order": 2 },
+        { "name": "origin",         "data_type": "string", "required": false, "display_order": 3 },
+        { "name": "genres",         "data_type": "string", "required": false, "display_order": 4 },
+        { "name": "description",    "data_type": "text",   "required": false, "display_order": 5 }
       ]
     },
     {
@@ -91,42 +36,24 @@
       "display_name": "Person",
       "icon": "user",
       "fields": [
-        {
-          "name": "name",
-          "data_type": "string",
-          "required": true,
-          "display_order": 0
-        },
-        {
-          "name": "born_year",
-          "data_type": "string",
-          "required": false,
-          "display_order": 1
-        },
-        {
-          "name": "died_year",
-          "data_type": "string",
-          "required": false,
-          "display_order": 2
-        },
-        {
-          "name": "nationality",
-          "data_type": "string",
-          "required": false,
-          "display_order": 3
-        },
-        {
-          "name": "instruments",
-          "data_type": "string",
-          "required": false,
-          "display_order": 4
-        },
-        {
-          "name": "description",
-          "data_type": "text",
-          "required": false,
-          "display_order": 5
-        }
+        { "name": "name",        "data_type": "string", "required": true,  "display_order": 0 },
+        { "name": "born_year",   "data_type": "string", "required": false, "display_order": 1 },
+        { "name": "died_year",   "data_type": "string", "required": false, "display_order": 2 },
+        { "name": "nationality", "data_type": "string", "required": false, "display_order": 3 },
+        { "name": "instruments", "data_type": "string", "required": false, "display_order": 4 },
+        { "name": "description", "data_type": "text",   "required": false, "display_order": 5 }
+      ]
+    },
+    {
+      "name": "song",
+      "display_name": "Song",
+      "icon": "music",
+      "fields": [
+        { "name": "title",                 "data_type": "string",  "required": true,  "display_order": 0 },
+        { "name": "release_year",          "data_type": "string",  "required": true,  "display_order": 1 },
+        { "name": "is_single",             "data_type": "boolean", "required": true,  "display_order": 2 },
+        { "name": "single_chart_position", "data_type": "integer", "required": false, "display_order": 3 },
+        { "name": "description",           "data_type": "text",    "required": false, "display_order": 4 }
       ]
     }
   ],
@@ -138,24 +65,9 @@
       "directed": true,
       "inverse_label": "HasMember",
       "fields": [
-        {
-          "name": "instrument",
-          "data_type": "string",
-          "required": false,
-          "display_order": 0
-        },
-        {
-          "name": "start_year",
-          "data_type": "string",
-          "required": false,
-          "display_order": 1
-        },
-        {
-          "name": "end_year",
-          "data_type": "string",
-          "required": false,
-          "display_order": 2
-        }
+        { "name": "instrument",  "data_type": "string", "required": false, "display_order": 0 },
+        { "name": "start_year",  "data_type": "string", "required": false, "display_order": 1 },
+        { "name": "end_year",    "data_type": "string", "required": false, "display_order": 2 }
       ]
     },
     {
@@ -165,698 +77,254 @@
       "directed": true,
       "inverse_label": "ReleasedBy",
       "fields": []
+    },
+    {
+      "name": "AppearsOn",
+      "source_entity_type": "song",
+      "target_entity_type": "album",
+      "directed": true,
+      "inverse_label": "Features",
+      "fields": []
+    },
+    {
+      "name": "ReleasedBy",
+      "source_entity_type": "song",
+      "target_entity_type": "band",
+      "directed": true,
+      "inverse_label": "Released",
+      "fields": []
+    },
+    {
+      "name": "GuestOn",
+      "source_entity_type": "person",
+      "target_entity_type": "song",
+      "directed": true,
+      "inverse_label": "Features",
+      "fields": [
+        { "name": "contribution", "data_type": "string", "required": false, "display_order": 0 }
+      ]
     }
   ],
   "entities": [
-    {
-      "_id": "01900000-0001-0010-0000-000000000001",
-      "entity_type": "band",
-      "field_values": {
-        "name": "New Order",
-        "formed_year": "1980",
-        "origin": "Salford, Manchester, England",
-        "genres": "Post-punk, synth-pop, new wave, dance",
-        "description": "Formed in 1980 from Joy Division after the death of Ian Curtis. Pioneered the fusion of post-punk guitar with electronic dance music and became one of the best-selling bands of the 1980s."
-      }
-    },
-    {
-      "_id": "01900000-0001-0010-0000-000000000002",
-      "entity_type": "band",
-      "field_values": {
-        "name": "Joy Division",
-        "formed_year": "1976",
-        "disbanded_year": "1980",
-        "origin": "Salford, Manchester, England",
-        "genres": "Post-punk, gothic rock, dark wave",
-        "description": "Seminal Manchester post-punk band active 1976-1980. Disbanded following the death of vocalist Ian Curtis on the eve of their first North American tour."
-      }
-    },
-    {
-      "_id": "01900000-0001-0010-0000-000000000003",
-      "entity_type": "band",
-      "field_values": {
-        "name": "Electronic",
-        "formed_year": "1987",
-        "disbanded_year": "2001",
-        "origin": "Manchester, England",
-        "genres": "Synth-pop, new wave, alternative dance",
-        "description": "Side project of Bernard Sumner (New Order) and Johnny Marr (The Smiths), with occasional contributions from Neil Tennant of Pet Shop Boys. Released three studio albums."
-      }
-    },
-    {
-      "_id": "01900000-0001-0010-0000-000000000004",
-      "entity_type": "band",
-      "field_values": {
-        "name": "The Smiths",
-        "formed_year": "1982",
-        "disbanded_year": "1987",
-        "origin": "Manchester, England",
-        "genres": "Indie rock, post-punk, jangle pop",
-        "description": "Iconic Manchester indie band formed by Morrissey and Johnny Marr. Widely regarded as one of the most influential bands of the 1980s."
-      }
-    },
-    {
-      "_id": "01900000-0001-0010-0000-000000000005",
-      "entity_type": "band",
-      "field_values": {
-        "name": "The Other Two",
-        "formed_year": "1990",
-        "disbanded_year": "2004",
-        "origin": "Manchester, England",
-        "genres": "Electronic, synth-pop, house",
-        "description": "Side project of New Order members Stephen Morris and Gillian Gilbert. Released two studio albums between 1993 and 1999."
-      }
-    },
-    {
-      "_id": "01900000-0001-0010-0000-000000000006",
-      "entity_type": "band",
-      "field_values": {
-        "name": "Monaco",
-        "formed_year": "1995",
-        "disbanded_year": "1999",
-        "origin": "Manchester, England",
-        "genres": "Alternative rock, Britpop",
-        "description": "Band formed by Peter Hook and New Order crew member David Potts while New Order was on hiatus during the mid-1990s."
-      }
-    },
-    {
-      "_id": "01900000-0001-0010-0000-000000000007",
-      "entity_type": "band",
-      "field_values": {
-        "name": "Bad Lieutenant",
-        "formed_year": "2008",
-        "origin": "Manchester, England",
-        "genres": "Post-punk, indie rock, electronic",
-        "description": "Band formed by Bernard Sumner and Phil Cunningham during New Order hiatus following the departure of Peter Hook. Released one album, Never Cry Another Tear (2009)."
-      }
-    },
-    {
-      "_id": "01900000-0001-0010-0000-000000000008",
-      "entity_type": "band",
-      "field_values": {
-        "name": "Revenge",
-        "formed_year": "1989",
-        "disbanded_year": "1993",
-        "origin": "Manchester, England",
-        "genres": "Alternative rock, indie rock",
-        "description": "Band formed by Peter Hook during New Order first extended hiatus. Released one studio album, One True Passion (1990)."
-      }
-    },
-    {
-      "_id": "01900000-0001-0011-0000-000000000001",
-      "entity_type": "person",
-      "field_values": {
-        "name": "Bernard Sumner",
-        "born_year": "1956",
-        "nationality": "British",
-        "instruments": "Vocals, guitar, keyboards",
-        "description": "Co-founder of Joy Division and New Order. Also formed Electronic with Johnny Marr and Bad Lieutenant with Phil Cunningham. Born Bernard Dicken in Salford."
-      }
-    },
-    {
-      "_id": "01900000-0001-0011-0000-000000000002",
-      "entity_type": "person",
-      "field_values": {
-        "name": "Peter Hook",
-        "born_year": "1956",
-        "nationality": "British",
-        "instruments": "Bass guitar",
-        "description": "Co-founder of Joy Division and New Order, known for melodic bass lines played high on the neck. Left New Order in 2007 and subsequently formed Peter Hook and The Light."
-      }
-    },
-    {
-      "_id": "01900000-0001-0011-0000-000000000003",
-      "entity_type": "person",
-      "field_values": {
-        "name": "Stephen Morris",
-        "born_year": "1957",
-        "nationality": "British",
-        "instruments": "Drums, percussion, drum machines",
-        "description": "Drummer and percussionist for Joy Division and New Order. Formed The Other Two with his partner Gillian Gilbert."
-      }
-    },
-    {
-      "_id": "01900000-0001-0011-0000-000000000004",
-      "entity_type": "person",
-      "field_values": {
-        "name": "Gillian Gilbert",
-        "born_year": "1961",
-        "nationality": "British",
-        "instruments": "Keyboards, guitar",
-        "description": "Keyboardist of New Order, joining shortly after the band formed in 1980. Partner of Stephen Morris; together they form The Other Two."
-      }
-    },
-    {
-      "_id": "01900000-0001-0011-0000-000000000005",
-      "entity_type": "person",
-      "field_values": {
-        "name": "Ian Curtis",
-        "born_year": "1956",
-        "died_year": "1980",
-        "nationality": "British",
-        "instruments": "Vocals, guitar",
-        "description": "Vocalist and lyricist of Joy Division. His death by suicide on 18 May 1980 led the three surviving members to reform as New Order."
-      }
-    },
-    {
-      "_id": "01900000-0001-0011-0000-000000000006",
-      "entity_type": "person",
-      "field_values": {
-        "name": "Johnny Marr",
-        "born_year": "1963",
-        "nationality": "British",
-        "instruments": "Guitar",
-        "description": "Guitarist and co-founder of The Smiths. Founded Electronic with Bernard Sumner. Has subsequently had an extensive solo career and collaborated widely."
-      }
-    },
-    {
-      "_id": "01900000-0001-0011-0000-000000000007",
-      "entity_type": "person",
-      "field_values": {
-        "name": "Phil Cunningham",
-        "born_year": "1965",
-        "nationality": "British",
-        "instruments": "Guitar, keyboards",
-        "description": "Joined New Order in 2001, initially as a replacement for Gillian Gilbert. Also a founding member of Bad Lieutenant alongside Bernard Sumner."
-      }
-    },
-    {
-      "_id": "01900000-0001-0011-0000-000000000008",
-      "entity_type": "person",
-      "field_values": {
-        "name": "David Potts",
-        "born_year": "1961",
-        "nationality": "British",
-        "instruments": "Guitar, vocals",
-        "description": "New Order crew member and guitarist who co-founded Monaco with Peter Hook during New Order hiatus in the mid-1990s."
-      }
-    },
-    {
-      "_id": "01900000-0001-0012-0000-000000000001",
-      "entity_type": "album",
-      "field_values": {
-        "title": "Unknown Pleasures",
-        "release_year": "1979",
-        "label": "Factory Records",
-        "genres": "Post-punk, gothic rock, dark wave",
-        "description": "Debut studio album by Joy Division. Produced by Martin Hannett, its sparse, atmospheric sound defined the post-punk genre."
-      }
-    },
-    {
-      "_id": "01900000-0001-0012-0000-000000000002",
-      "entity_type": "album",
-      "field_values": {
-        "title": "Closer",
-        "release_year": "1980",
-        "label": "Factory Records",
-        "genres": "Post-punk, dark wave, gothic rock",
-        "description": "Second and final studio album by Joy Division, released two months after Ian Curtis death. Often considered one of the greatest albums ever made."
-      }
-    },
-    {
-      "_id": "01900000-0001-0012-0000-000000000003",
-      "entity_type": "album",
-      "field_values": {
-        "title": "Movement",
-        "release_year": "1981",
-        "label": "Factory Records",
-        "genres": "Post-punk, new wave",
-        "description": "Debut album by New Order, recorded before the band had fully settled on their electronic direction. Retains a strong Joy Division influence."
-      }
-    },
-    {
-      "_id": "01900000-0001-0012-0000-000000000004",
-      "entity_type": "album",
-      "field_values": {
-        "title": "Power, Corruption & Lies",
-        "release_year": "1983",
-        "label": "Factory Records",
-        "genres": "Synth-pop, post-punk, dance",
-        "description": "Second studio album. The standalone single Blue Monday, released the same year, became the best-selling 12-inch single of all time."
-      }
-    },
-    {
-      "_id": "01900000-0001-0012-0000-000000000005",
-      "entity_type": "album",
-      "field_values": {
-        "title": "Low-life",
-        "release_year": "1985",
-        "label": "Factory Records",
-        "genres": "Synth-pop, post-punk, dance",
-        "description": "Third studio album, widely regarded as the point where New Order fully synthesised post-punk guitar with electronic dance music."
-      }
-    },
-    {
-      "_id": "01900000-0001-0012-0000-000000000006",
-      "entity_type": "album",
-      "field_values": {
-        "title": "Brotherhood",
-        "release_year": "1986",
-        "label": "Factory Records",
-        "genres": "Alternative rock, synth-pop",
-        "description": "Fourth studio album, split roughly between guitar-led songs on side one and electronic tracks on side two."
-      }
-    },
-    {
-      "_id": "01900000-0001-0012-0000-000000000007",
-      "entity_type": "album",
-      "field_values": {
-        "title": "Technique",
-        "release_year": "1989",
-        "label": "Factory Records",
-        "genres": "Synth-pop, Madchester, acid house",
-        "description": "Fifth studio album, recorded partly in Ibiza during the acid house explosion. Debuted at number one in the UK."
-      }
-    },
-    {
-      "_id": "01900000-0001-0012-0000-000000000008",
-      "entity_type": "album",
-      "field_values": {
-        "title": "Republic",
-        "release_year": "1993",
-        "label": "London Records",
-        "genres": "Electronic, dance, synth-pop",
-        "description": "Sixth studio album, released on London Records after Factory Records went bankrupt. Debuted at number one in the UK."
-      }
-    },
-    {
-      "_id": "01900000-0001-0012-0000-000000000009",
-      "entity_type": "album",
-      "field_values": {
-        "title": "Get Ready",
-        "release_year": "2001",
-        "label": "London Records",
-        "genres": "Alternative rock, electronic",
-        "description": "Seventh studio album, featuring guest appearances from Bobby Gillespie and Billy Corgan. A more guitar-driven return."
-      }
-    },
-    {
-      "_id": "01900000-0001-0012-0000-000000000010",
-      "entity_type": "album",
-      "field_values": {
-        "title": "Music Complete",
-        "release_year": "2015",
-        "label": "Mute Records",
-        "genres": "Electronic, dance, synth-pop",
-        "description": "Ninth studio album and first without Peter Hook. Produced by various collaborators including Stuart Price, widely praised as a late-career high point."
-      }
-    },
-    {
-      "_id": "01900000-0001-0012-0000-000000000011",
-      "entity_type": "album",
-      "field_values": {
-        "title": "Electronic",
-        "release_year": "1991",
-        "label": "Parlophone",
-        "genres": "Synth-pop, new wave, alternative dance",
-        "description": "Self-titled debut album by Electronic, featuring contributions from Neil Tennant (Pet Shop Boys) on several tracks."
-      }
-    },
-    {
-      "_id": "01900000-0001-0012-0000-000000000012",
-      "entity_type": "album",
-      "field_values": {
-        "title": "Raise the Pressure",
-        "release_year": "1996",
-        "label": "Parlophone",
-        "genres": "Alternative dance, synth-pop",
-        "description": "Second studio album by Electronic. More straightforward in production than the debut, co-produced by Karl Bartos of Kraftwerk."
-      }
-    },
-    {
-      "_id": "01900000-0001-0012-0000-000000000013",
-      "entity_type": "album",
-      "field_values": {
-        "title": "Twisted Tenderness",
-        "release_year": "1999",
-        "label": "Parlophone",
-        "genres": "Alternative rock, electronic",
-        "description": "Third and final album by Electronic. The band dissolved shortly after its release."
-      }
-    },
-    {
-      "_id": "01900000-0001-0012-0000-000000000014",
-      "entity_type": "album",
-      "field_values": {
-        "title": "The Smiths",
-        "release_year": "1984",
-        "label": "Rough Trade Records",
-        "genres": "Indie rock, post-punk, jangle pop",
-        "description": "Self-titled debut album by The Smiths. Produced by John Porter and Troy Tate. Launched one of the most distinctive voices in British indie music."
-      }
-    },
-    {
-      "_id": "01900000-0001-0012-0000-000000000015",
-      "entity_type": "album",
-      "field_values": {
-        "title": "Meat Is Murder",
-        "release_year": "1985",
-        "label": "Rough Trade Records",
-        "genres": "Indie rock, post-punk",
-        "description": "Second studio album by The Smiths. Debuted at number one in the UK and features the landmark title track."
-      }
-    },
-    {
-      "_id": "01900000-0001-0012-0000-000000000016",
-      "entity_type": "album",
-      "field_values": {
-        "title": "The Queen Is Dead",
-        "release_year": "1986",
-        "label": "Rough Trade Records",
-        "genres": "Indie rock, post-punk, jangle pop",
-        "description": "Third studio album by The Smiths. Consistently ranked among the greatest albums of all time."
-      }
-    },
-    {
-      "_id": "01900000-0001-0012-0000-000000000017",
-      "entity_type": "album",
-      "field_values": {
-        "title": "Strangeways, Here We Come",
-        "release_year": "1987",
-        "label": "Rough Trade Records",
-        "genres": "Indie rock, post-punk",
-        "description": "Fourth and final studio album by The Smiths, released after the band had already broken up. More polished and orchestral than previous releases."
-      }
-    },
-    {
-      "_id": "01900000-0001-0012-0000-000000000018",
-      "entity_type": "album",
-      "field_values": {
-        "title": "The Other Two & You",
-        "release_year": "1993",
-        "label": "London Records",
-        "genres": "Electronic, synth-pop, house",
-        "description": "Debut album by The Other Two (Stephen Morris and Gillian Gilbert), recorded alongside the New Order Republic sessions."
-      }
-    },
-    {
-      "_id": "01900000-0001-0012-0000-000000000019",
-      "entity_type": "album",
-      "field_values": {
-        "title": "Music for Pleasure",
-        "release_year": "1997",
-        "label": "Polydor",
-        "genres": "Alternative rock, Britpop",
-        "description": "Debut and only studio album by Monaco, recorded by Peter Hook and David Potts while New Order was on indefinite hiatus."
-      }
-    }
+
+    { "_id": "band-001", "entity_type": "band", "field_values": { "name": "New Order",              "formed_year": "1980",                           "origin": "Salford, Manchester, England", "genres": "Post-punk, synth-pop, new wave, dance",       "description": "Formed in 1980 from Joy Division after the death of Ian Curtis. Pioneered the fusion of post-punk guitar with electronic dance music and became one of the best-selling bands of the 1980s." } },
+    { "_id": "band-002", "entity_type": "band", "field_values": { "name": "Joy Division",           "formed_year": "1976", "disbanded_year": "1980", "origin": "Salford, Manchester, England", "genres": "Post-punk, gothic rock, dark wave",            "description": "Seminal Manchester post-punk band active 1976–1980. Disbanded following the death of vocalist Ian Curtis on the eve of their first North American tour." } },
+    { "_id": "band-003", "entity_type": "band", "field_values": { "name": "Electronic",             "formed_year": "1987", "disbanded_year": "2001", "origin": "Manchester, England",          "genres": "Synth-pop, new wave, alternative dance",      "description": "Side project of Bernard Sumner (New Order) and Johnny Marr (The Smiths), with occasional contributions from Neil Tennant of Pet Shop Boys. Released three studio albums." } },
+    { "_id": "band-004", "entity_type": "band", "field_values": { "name": "The Smiths",             "formed_year": "1982", "disbanded_year": "1987", "origin": "Manchester, England",          "genres": "Indie rock, post-punk, jangle pop",           "description": "Iconic Manchester indie band formed by Morrissey and Johnny Marr. Widely regarded as one of the most influential bands of the 1980s." } },
+    { "_id": "band-005", "entity_type": "band", "field_values": { "name": "The Other Two",          "formed_year": "1990", "disbanded_year": "2004", "origin": "Manchester, England",          "genres": "Electronic, synth-pop, house",                "description": "Side project of New Order members Stephen Morris and Gillian Gilbert. Released two studio albums between 1993 and 1999." } },
+    { "_id": "band-006", "entity_type": "band", "field_values": { "name": "Monaco",                 "formed_year": "1995", "disbanded_year": "1999", "origin": "Manchester, England",          "genres": "Alternative rock, Britpop",                   "description": "Band formed by Peter Hook and New Order crew member David Potts while New Order was on hiatus during the mid-1990s." } },
+    { "_id": "band-007", "entity_type": "band", "field_values": { "name": "Bad Lieutenant",         "formed_year": "2008",                           "origin": "Manchester, England",          "genres": "Post-punk, indie rock, electronic",           "description": "Band formed by Bernard Sumner and Phil Cunningham during New Order hiatus following the departure of Peter Hook. Released one album, Never Cry Another Tear (2009)." } },
+    { "_id": "band-008", "entity_type": "band", "field_values": { "name": "Revenge",                "formed_year": "1989", "disbanded_year": "1993", "origin": "Manchester, England",          "genres": "Alternative rock, indie rock",                "description": "Band formed by Peter Hook during New Order's first extended hiatus. Released one studio album, One True Passion (1990)." } },
+    { "_id": "band-009", "entity_type": "band", "field_values": { "name": "Peter Hook & The Light", "formed_year": "2010",                           "origin": "Manchester, England",          "genres": "Post-punk, new wave",                         "description": "Band formed by Peter Hook after his departure from New Order, primarily performing Joy Division and New Order material in full album live sets." } },
+    { "_id": "band-010", "entity_type": "band", "field_values": { "name": "Pet Shop Boys",          "formed_year": "1981",                           "origin": "London, England",              "genres": "Synth-pop, dance-pop, electronic",            "description": "Duo of Neil Tennant and Chris Lowe. One of the best-selling music acts of all time. Neil Tennant contributed vocals to several Electronic recordings." } },
+
+    { "_id": "person-001", "entity_type": "person", "field_values": { "name": "Bernard Sumner",   "born_year": "1956",                   "nationality": "British", "instruments": "Vocals, guitar, keyboards",       "description": "Co-founder of Joy Division and New Order. Also formed Electronic with Johnny Marr and Bad Lieutenant with Phil Cunningham. Born Bernard Dicken in Salford." } },
+    { "_id": "person-002", "entity_type": "person", "field_values": { "name": "Peter Hook",       "born_year": "1956",                   "nationality": "British", "instruments": "Bass guitar",                     "description": "Co-founder of Joy Division and New Order, known for melodic bass lines played high on the neck. Left New Order in 2007 and subsequently formed Peter Hook and The Light." } },
+    { "_id": "person-003", "entity_type": "person", "field_values": { "name": "Stephen Morris",   "born_year": "1957",                   "nationality": "British", "instruments": "Drums, percussion, drum machines", "description": "Drummer and percussionist for Joy Division and New Order. Formed The Other Two with his partner Gillian Gilbert." } },
+    { "_id": "person-004", "entity_type": "person", "field_values": { "name": "Gillian Gilbert",  "born_year": "1961",                   "nationality": "British", "instruments": "Keyboards, guitar",               "description": "Keyboardist of New Order, joining shortly after the band formed in 1980. Partner of Stephen Morris; together they form The Other Two." } },
+    { "_id": "person-005", "entity_type": "person", "field_values": { "name": "Ian Curtis",       "born_year": "1956", "died_year": "1980", "nationality": "British", "instruments": "Vocals, guitar",                  "description": "Vocalist and lyricist of Joy Division. His death by suicide on 18 May 1980 led the three surviving members to reform as New Order." } },
+    { "_id": "person-006", "entity_type": "person", "field_values": { "name": "Johnny Marr",      "born_year": "1963",                   "nationality": "British", "instruments": "Guitar",                          "description": "Guitarist and co-founder of The Smiths. Founded Electronic with Bernard Sumner. Has subsequently had an extensive solo career and collaborated widely." } },
+    { "_id": "person-007", "entity_type": "person", "field_values": { "name": "Phil Cunningham",  "born_year": "1965",                   "nationality": "British", "instruments": "Guitar, keyboards",               "description": "Joined New Order in 2001, initially as a replacement for Gillian Gilbert. Also a founding member of Bad Lieutenant alongside Bernard Sumner." } },
+    { "_id": "person-008", "entity_type": "person", "field_values": { "name": "David Potts",      "born_year": "1961",                   "nationality": "British", "instruments": "Guitar, vocals",                  "description": "New Order crew member and guitarist who co-founded Monaco with Peter Hook during New Order hiatus in the mid-1990s." } },
+    { "_id": "person-009", "entity_type": "person", "field_values": { "name": "Morrissey",         "born_year": "1959",                   "nationality": "British", "instruments": "Vocals",                          "description": "Vocalist and lyricist of The Smiths, co-founding the band with Johnny Marr in 1982. Born Steven Patrick Morrissey in Davyhulme, Manchester. Pursued a solo career after The Smiths disbanded in 1987." } },
+    { "_id": "person-010", "entity_type": "person", "field_values": { "name": "Andy Rourke",       "born_year": "1964", "died_year": "2023", "nationality": "British", "instruments": "Bass guitar",                     "description": "Bassist of The Smiths throughout their entire career. Died in May 2023. Known for fluid, melodic bass playing that complemented Johnny Marr's guitar work." } },
+    { "_id": "person-011", "entity_type": "person", "field_values": { "name": "Mike Joyce",        "born_year": "1963",                   "nationality": "British", "instruments": "Drums",                           "description": "Drummer of The Smiths throughout their career. Later sued Morrissey and Marr over royalties in a high-profile court case, which he won in 1996." } },
+    { "_id": "person-012", "entity_type": "person", "field_values": { "name": "Neil Tennant",      "born_year": "1954",                   "nationality": "British", "instruments": "Vocals",                          "description": "Co-founder and vocalist of Pet Shop Boys. Contributed vocals to several Electronic recordings, including tracks on their self-titled debut album." } },
+
+    { "_id": "album-001", "entity_type": "album", "field_values": { "title": "Unknown Pleasures",        "release_year": "1979", "label": "Factory Records",     "genres": "Post-punk, gothic rock, dark wave",     "description": "Debut studio album by Joy Division. Produced by Martin Hannett, its sparse, atmospheric sound defined the post-punk genre." } },
+    { "_id": "album-002", "entity_type": "album", "field_values": { "title": "Closer",                   "release_year": "1980", "label": "Factory Records",     "genres": "Post-punk, dark wave, gothic rock",     "description": "Second and final studio album by Joy Division, released two months after Ian Curtis's death. Often considered one of the greatest albums ever made." } },
+    { "_id": "album-003", "entity_type": "album", "field_values": { "title": "Movement",                 "release_year": "1981", "label": "Factory Records",     "genres": "Post-punk, new wave",                   "description": "Debut album by New Order, recorded before the band had fully settled on their electronic direction. Retains a strong Joy Division influence." } },
+    { "_id": "album-004", "entity_type": "album", "field_values": { "title": "Power, Corruption & Lies", "release_year": "1983", "label": "Factory Records",     "genres": "Synth-pop, post-punk, dance",           "description": "Second studio album. The standalone single Blue Monday, released the same year, became the best-selling 12-inch single of all time." } },
+    { "_id": "album-005", "entity_type": "album", "field_values": { "title": "Low-life",                 "release_year": "1985", "label": "Factory Records",     "genres": "Synth-pop, post-punk, dance",           "description": "Third studio album, widely regarded as the point where New Order fully synthesised post-punk guitar with electronic dance music." } },
+    { "_id": "album-006", "entity_type": "album", "field_values": { "title": "Brotherhood",              "release_year": "1986", "label": "Factory Records",     "genres": "Alternative rock, synth-pop",           "description": "Fourth studio album, split roughly between guitar-led songs on side one and electronic tracks on side two." } },
+    { "_id": "album-007", "entity_type": "album", "field_values": { "title": "Technique",                "release_year": "1989", "label": "Factory Records",     "genres": "Synth-pop, Madchester, acid house",     "description": "Fifth studio album, recorded partly in Ibiza during the acid house explosion. Debuted at number one in the UK." } },
+    { "_id": "album-008", "entity_type": "album", "field_values": { "title": "Republic",                 "release_year": "1993", "label": "London Records",      "genres": "Electronic, dance, synth-pop",          "description": "Sixth studio album, released on London Records after Factory Records went bankrupt. Debuted at number one in the UK." } },
+    { "_id": "album-009", "entity_type": "album", "field_values": { "title": "Get Ready",                "release_year": "2001", "label": "London Records",      "genres": "Alternative rock, electronic",          "description": "Seventh studio album, featuring guest appearances from Bobby Gillespie and Billy Corgan. A more guitar-driven return." } },
+    { "_id": "album-010", "entity_type": "album", "field_values": { "title": "Waiting for the Sirens' Call", "release_year": "2005", "label": "Warner Bros.",   "genres": "Electronic, dance, synth-pop",          "description": "Eighth studio album, the last to feature Peter Hook. Included the single Krafty featuring Scissor Sisters' Ana Matronic." } },
+    { "_id": "album-011", "entity_type": "album", "field_values": { "title": "Music Complete",           "release_year": "2015", "label": "Mute Records",        "genres": "Electronic, dance, synth-pop",          "description": "Ninth studio album and first without Peter Hook. Produced by various collaborators including Stuart Price, widely praised as a late-career high point." } },
+    { "_id": "album-012", "entity_type": "album", "field_values": { "title": "Electronic",               "release_year": "1991", "label": "Parlophone",          "genres": "Synth-pop, new wave, alternative dance", "description": "Self-titled debut album by Electronic, featuring contributions from Neil Tennant (Pet Shop Boys) on several tracks." } },
+    { "_id": "album-013", "entity_type": "album", "field_values": { "title": "Raise the Pressure",       "release_year": "1996", "label": "Parlophone",          "genres": "Alternative dance, synth-pop",          "description": "Second studio album by Electronic. More straightforward in production than the debut, co-produced by Karl Bartos of Kraftwerk." } },
+    { "_id": "album-014", "entity_type": "album", "field_values": { "title": "Twisted Tenderness",       "release_year": "1999", "label": "Parlophone",          "genres": "Alternative rock, electronic",          "description": "Third and final album by Electronic. The band dissolved shortly after its release." } },
+    { "_id": "album-015", "entity_type": "album", "field_values": { "title": "The Smiths",               "release_year": "1984", "label": "Rough Trade Records", "genres": "Indie rock, post-punk, jangle pop",     "description": "Self-titled debut album by The Smiths. Produced by John Porter and Troy Tate. Launched one of the most distinctive voices in British indie music." } },
+    { "_id": "album-016", "entity_type": "album", "field_values": { "title": "Meat Is Murder",           "release_year": "1985", "label": "Rough Trade Records", "genres": "Indie rock, post-punk",                 "description": "Second studio album by The Smiths. Debuted at number one in the UK and features the landmark title track." } },
+    { "_id": "album-017", "entity_type": "album", "field_values": { "title": "The Queen Is Dead",        "release_year": "1986", "label": "Rough Trade Records", "genres": "Indie rock, post-punk, jangle pop",     "description": "Third studio album by The Smiths. Consistently ranked among the greatest albums of all time." } },
+    { "_id": "album-018", "entity_type": "album", "field_values": { "title": "Strangeways, Here We Come","release_year": "1987", "label": "Rough Trade Records", "genres": "Indie rock, post-punk",                 "description": "Fourth and final studio album by The Smiths, released after the band had already broken up. More polished and orchestral than previous releases." } },
+    { "_id": "album-019", "entity_type": "album", "field_values": { "title": "The Other Two & You",      "release_year": "1993", "label": "London Records",      "genres": "Electronic, synth-pop, house",          "description": "Debut album by The Other Two (Stephen Morris and Gillian Gilbert), recorded alongside the New Order Republic sessions." } },
+    { "_id": "album-020", "entity_type": "album", "field_values": { "title": "Super Highways",           "release_year": "1999", "label": "London Records",      "genres": "Electronic, synth-pop, house",          "description": "Second and final album by The Other Two, released in 1999." } },
+    { "_id": "album-021", "entity_type": "album", "field_values": { "title": "Music for Pleasure",       "release_year": "1997", "label": "Polydor",             "genres": "Alternative rock, Britpop",             "description": "Debut and only studio album by Monaco, recorded by Peter Hook and David Potts while New Order was on indefinite hiatus." } },
+    { "_id": "album-022", "entity_type": "album", "field_values": { "title": "One True Passion",         "release_year": "1990", "label": "Factory Records",     "genres": "Alternative rock, indie rock",          "description": "Debut and only studio album by Revenge, Peter Hook's band formed during New Order's first extended hiatus." } },
+
+    { "_id": "song-001", "entity_type": "song", "field_values": { "title": "Love Will Tear Us Apart", "release_year": "1980", "is_single": true, "single_chart_position": 13, "description": "Joy Division's only UK hit single, released posthumously one month after Ian Curtis's death. Reached number 13 in the UK. One of the most celebrated songs in post-punk history." } },
+    { "_id": "song-002", "entity_type": "song", "field_values": { "title": "Atmosphere",             "release_year": "1980", "is_single": true, "single_chart_position": 34, "description": "Originally released in France in 1980 as a limited edition, then released as a UK single in 1988 where it reached number 34. A fan favourite and emotional highlight of Joy Division's catalogue." } },
+    { "_id": "song-003", "entity_type": "song", "field_values": { "title": "Ceremony",               "release_year": "1981", "is_single": true, "single_chart_position": 34, "description": "New Order's debut single, the last song written by Joy Division. Peaked at number 34 in the UK." } },
+    { "_id": "song-004", "entity_type": "song", "field_values": { "title": "Blue Monday",            "release_year": "1983", "is_single": true, "single_chart_position": 9,  "description": "New Order's landmark single, issued as a standalone 12-inch. Peaked at number 9 in the UK and became the best-selling 12-inch single of all time. Never appeared on the original Power, Corruption & Lies LP." } },
+    { "_id": "song-005", "entity_type": "song", "field_values": { "title": "Confusion",              "release_year": "1983", "is_single": true, "single_chart_position": 12, "description": "Produced by Arthur Baker, reached number 12 in the UK. An early example of New Order's transatlantic dancefloor sound." } },
+    { "_id": "song-006", "entity_type": "song", "field_values": { "title": "Thieves Like Us",        "release_year": "1984", "is_single": true, "single_chart_position": 18, "description": "New Order single released in 1984, reaching number 18 in the UK." } },
+    { "_id": "song-007", "entity_type": "song", "field_values": { "title": "The Perfect Kiss",       "release_year": "1985", "is_single": true, "single_chart_position": 46, "description": "Lead single from Low-life, reaching number 46 in the UK." } },
+    { "_id": "song-008", "entity_type": "song", "field_values": { "title": "Sub-culture",            "release_year": "1985", "is_single": true, "single_chart_position": 63, "description": "Second single from Low-life." } },
+    { "_id": "song-009", "entity_type": "song", "field_values": { "title": "Shellshock",             "release_year": "1986", "is_single": true, "single_chart_position": 28, "description": "Released as part of the Pretty in Pink soundtrack. Reached number 28 in the UK." } },
+    { "_id": "song-010", "entity_type": "song", "field_values": { "title": "Bizarre Love Triangle",  "release_year": "1986", "is_single": true, "single_chart_position": 56, "description": "From Brotherhood, remixed by Shep Pettibone and re-released, becoming one of New Order's most-streamed songs. Original release peaked at 56 in the UK." } },
+    { "_id": "song-011", "entity_type": "song", "field_values": { "title": "True Faith",             "release_year": "1987", "is_single": true, "single_chart_position": 4,  "description": "Standalone single released alongside the Substance compilation. Reached number 4 in the UK. One of New Order's definitive songs." } },
+    { "_id": "song-012", "entity_type": "song", "field_values": { "title": "Touched by the Hand of God", "release_year": "1987", "is_single": true, "single_chart_position": 20, "description": "New Order single reaching number 20 in the UK." } },
+    { "_id": "song-013", "entity_type": "song", "field_values": { "title": "Fine Time",              "release_year": "1988", "is_single": true, "single_chart_position": 11, "description": "Lead single from Technique, reaching number 11 in the UK." } },
+    { "_id": "song-014", "entity_type": "song", "field_values": { "title": "Round & Round",          "release_year": "1989", "is_single": true, "single_chart_position": 21, "description": "Second single from Technique, reaching number 21 in the UK." } },
+    { "_id": "song-015", "entity_type": "song", "field_values": { "title": "World in Motion",        "release_year": "1990", "is_single": true, "single_chart_position": 1,  "description": "New Order's only UK number 1 single, recorded in collaboration with the England national football team for the 1990 World Cup." } },
+    { "_id": "song-016", "entity_type": "song", "field_values": { "title": "Regret",                 "release_year": "1993", "is_single": true, "single_chart_position": 4,  "description": "Lead single from Republic, reaching number 4 in the UK. Critically and commercially successful." } },
+    { "_id": "song-017", "entity_type": "song", "field_values": { "title": "Crystal",                "release_year": "2001", "is_single": true, "single_chart_position": 8,  "description": "Lead single from Get Ready, reaching number 8 in the UK." } },
+    { "_id": "song-018", "entity_type": "song", "field_values": { "title": "60 Miles an Hour",       "release_year": "2001", "is_single": true, "single_chart_position": 29, "description": "Second single from Get Ready, reaching number 29 in the UK." } },
+    { "_id": "song-019", "entity_type": "song", "field_values": { "title": "Here to Stay",           "release_year": "2002", "is_single": true, "single_chart_position": 15, "description": "Recorded for the 24 Hour Party People soundtrack, produced by The Chemical Brothers. Reached number 15 in the UK." } },
+    { "_id": "song-020", "entity_type": "song", "field_values": { "title": "Krafty",                 "release_year": "2005", "is_single": true, "single_chart_position": 8,  "description": "Lead single from Waiting for the Sirens' Call, reaching number 8 in the UK. Featured guest vocals from Ana Matronic of Scissor Sisters." } },
+
+    { "_id": "song-021", "entity_type": "song", "field_values": { "title": "Getting Away with It",   "release_year": "1989", "is_single": true, "single_chart_position": 12, "description": "Electronic's debut single, featuring Neil Tennant on lead vocals. Reached number 12 in the UK." } },
+    { "_id": "song-022", "entity_type": "song", "field_values": { "title": "Get the Message",        "release_year": "1991", "is_single": true, "single_chart_position": 8,  "description": "From the Electronic debut album. Reached number 8 in the UK." } },
+    { "_id": "song-023", "entity_type": "song", "field_values": { "title": "Feel Every Beat",        "release_year": "1991", "is_single": true, "single_chart_position": 39, "description": "From the Electronic debut album. Reached number 39 in the UK." } },
+    { "_id": "song-024", "entity_type": "song", "field_values": { "title": "Disappointed",           "release_year": "1992", "is_single": true, "single_chart_position": 6,  "description": "Electronic single, reached number 6 in the UK. Featured Neil Tennant on vocals." } },
+
+    { "_id": "song-025", "entity_type": "song", "field_values": { "title": "Hand in Glove",          "release_year": "1983", "is_single": true,                                "description": "The Smiths' debut single. Did not chart on the UK Singles Chart but reached number 3 on the UK Indie Chart." } },
+    { "_id": "song-026", "entity_type": "song", "field_values": { "title": "This Charming Man",      "release_year": "1983", "is_single": true, "single_chart_position": 25, "description": "The Smiths' second single and one of their most celebrated songs. Reached number 25 in the UK on original release; re-issued in 1992, reaching number 8." } },
+    { "_id": "song-027", "entity_type": "song", "field_values": { "title": "What Difference Does It Make?", "release_year": "1984", "is_single": true, "single_chart_position": 12, "description": "Third single by The Smiths. Reached number 12 in the UK." } },
+    { "_id": "song-028", "entity_type": "song", "field_values": { "title": "Heaven Knows I'm Miserable Now", "release_year": "1984", "is_single": true, "single_chart_position": 10, "description": "The Smiths' first top 10 single, reaching number 10 in the UK. A non-album single." } },
+    { "_id": "song-029", "entity_type": "song", "field_values": { "title": "William, It Was Really Nothing", "release_year": "1984", "is_single": true, "single_chart_position": 17, "description": "Non-album Smiths single reaching number 17 in the UK." } },
+    { "_id": "song-030", "entity_type": "song", "field_values": { "title": "How Soon Is Now?",       "release_year": "1985", "is_single": true, "single_chart_position": 24, "description": "Originally a B-side, later released as a single. Reached number 24 in the UK. One of The Smiths' most iconic and enduring songs." } },
+    { "_id": "song-031", "entity_type": "song", "field_values": { "title": "Shakespeare's Sister",   "release_year": "1985", "is_single": true, "single_chart_position": 26, "description": "Non-album Smiths single reaching number 26 in the UK." } },
+    { "_id": "song-032", "entity_type": "song", "field_values": { "title": "The Boy with the Thorn in His Side", "release_year": "1985", "is_single": true, "single_chart_position": 23, "description": "From The Queen Is Dead sessions, released as a single in 1985. Reached number 23 in the UK." } },
+    { "_id": "song-033", "entity_type": "song", "field_values": { "title": "Bigmouth Strikes Again", "release_year": "1986", "is_single": true, "single_chart_position": 26, "description": "From The Queen Is Dead. Reached number 26 in the UK." } },
+    { "_id": "song-034", "entity_type": "song", "field_values": { "title": "Panic",                  "release_year": "1986", "is_single": true, "single_chart_position": 11, "description": "Non-album Smiths single. Reached number 11 in the UK. Famous for the refrain 'Hang the DJ'." } },
+    { "_id": "song-035", "entity_type": "song", "field_values": { "title": "Ask",                    "release_year": "1986", "is_single": true, "single_chart_position": 14, "description": "Non-album Smiths single. Reached number 14 in the UK." } },
+    { "_id": "song-036", "entity_type": "song", "field_values": { "title": "Shoplifters of the World Unite", "release_year": "1987", "is_single": true, "single_chart_position": 12, "description": "Non-album Smiths single. Reached number 12 in the UK." } },
+    { "_id": "song-037", "entity_type": "song", "field_values": { "title": "Sheila Take a Bow",      "release_year": "1987", "is_single": true, "single_chart_position": 10, "description": "Non-album Smiths single. Reached number 10 in the UK, joint highest chart position for the band during their lifetime." } },
+    { "_id": "song-038", "entity_type": "song", "field_values": { "title": "Girlfriend in a Coma",   "release_year": "1987", "is_single": true, "single_chart_position": 13, "description": "From Strangeways, Here We Come. Reached number 13 in the UK." } },
+    { "_id": "song-039", "entity_type": "song", "field_values": { "title": "I Started Something I Couldn't Finish", "release_year": "1987", "is_single": true, "single_chart_position": 23, "description": "From Strangeways, Here We Come. Reached number 23 in the UK." } },
+    { "_id": "song-040", "entity_type": "song", "field_values": { "title": "Last Night I Dreamt That Somebody Loved Me", "release_year": "1987", "is_single": true, "single_chart_position": 30, "description": "From Strangeways, Here We Come. Reached number 30 in the UK. The Smiths' final single." } }
+
   ],
   "relationships": [
-    {
-      "relationship_type": "MemberOf",
-      "source_entity_id": "01900000-0001-0011-0000-000000000001",
-      "target_entity_id": "01900000-0001-0010-0000-000000000002",
-      "field_values": {
-        "instrument": "Guitar, vocals",
-        "start_year": "1976",
-        "end_year": "1980"
-      }
-    },
-    {
-      "relationship_type": "MemberOf",
-      "source_entity_id": "01900000-0001-0011-0000-000000000001",
-      "target_entity_id": "01900000-0001-0010-0000-000000000001",
-      "field_values": {
-        "instrument": "Vocals, guitar, keyboards",
-        "start_year": "1980"
-      }
-    },
-    {
-      "relationship_type": "MemberOf",
-      "source_entity_id": "01900000-0001-0011-0000-000000000001",
-      "target_entity_id": "01900000-0001-0010-0000-000000000003",
-      "field_values": {
-        "instrument": "Vocals, guitar, keyboards",
-        "start_year": "1987",
-        "end_year": "2001"
-      }
-    },
-    {
-      "relationship_type": "MemberOf",
-      "source_entity_id": "01900000-0001-0011-0000-000000000001",
-      "target_entity_id": "01900000-0001-0010-0000-000000000007",
-      "field_values": {
-        "instrument": "Vocals, guitar, keyboards",
-        "start_year": "2008"
-      }
-    },
-    {
-      "relationship_type": "MemberOf",
-      "source_entity_id": "01900000-0001-0011-0000-000000000002",
-      "target_entity_id": "01900000-0001-0010-0000-000000000002",
-      "field_values": {
-        "instrument": "Bass guitar",
-        "start_year": "1976",
-        "end_year": "1980"
-      }
-    },
-    {
-      "relationship_type": "MemberOf",
-      "source_entity_id": "01900000-0001-0011-0000-000000000002",
-      "target_entity_id": "01900000-0001-0010-0000-000000000001",
-      "field_values": {
-        "instrument": "Bass guitar",
-        "start_year": "1980",
-        "end_year": "2007"
-      }
-    },
-    {
-      "relationship_type": "MemberOf",
-      "source_entity_id": "01900000-0001-0011-0000-000000000002",
-      "target_entity_id": "01900000-0001-0010-0000-000000000006",
-      "field_values": {
-        "instrument": "Bass guitar, vocals",
-        "start_year": "1995",
-        "end_year": "1999"
-      }
-    },
-    {
-      "relationship_type": "MemberOf",
-      "source_entity_id": "01900000-0001-0011-0000-000000000002",
-      "target_entity_id": "01900000-0001-0010-0000-000000000008",
-      "field_values": {
-        "instrument": "Bass guitar, vocals",
-        "start_year": "1989",
-        "end_year": "1993"
-      }
-    },
-    {
-      "relationship_type": "MemberOf",
-      "source_entity_id": "01900000-0001-0011-0000-000000000003",
-      "target_entity_id": "01900000-0001-0010-0000-000000000002",
-      "field_values": {
-        "instrument": "Drums",
-        "start_year": "1977",
-        "end_year": "1980"
-      }
-    },
-    {
-      "relationship_type": "MemberOf",
-      "source_entity_id": "01900000-0001-0011-0000-000000000003",
-      "target_entity_id": "01900000-0001-0010-0000-000000000001",
-      "field_values": {
-        "instrument": "Drums, drum machines",
-        "start_year": "1980"
-      }
-    },
-    {
-      "relationship_type": "MemberOf",
-      "source_entity_id": "01900000-0001-0011-0000-000000000003",
-      "target_entity_id": "01900000-0001-0010-0000-000000000005",
-      "field_values": {
-        "instrument": "Drums, programming",
-        "start_year": "1990"
-      }
-    },
-    {
-      "relationship_type": "MemberOf",
-      "source_entity_id": "01900000-0001-0011-0000-000000000004",
-      "target_entity_id": "01900000-0001-0010-0000-000000000001",
-      "field_values": {
-        "instrument": "Keyboards, guitar",
-        "start_year": "1980"
-      }
-    },
-    {
-      "relationship_type": "MemberOf",
-      "source_entity_id": "01900000-0001-0011-0000-000000000004",
-      "target_entity_id": "01900000-0001-0010-0000-000000000005",
-      "field_values": {
-        "instrument": "Keyboards, guitar",
-        "start_year": "1990"
-      }
-    },
-    {
-      "relationship_type": "MemberOf",
-      "source_entity_id": "01900000-0001-0011-0000-000000000005",
-      "target_entity_id": "01900000-0001-0010-0000-000000000002",
-      "field_values": {
-        "instrument": "Vocals, guitar",
-        "start_year": "1976",
-        "end_year": "1980"
-      }
-    },
-    {
-      "relationship_type": "MemberOf",
-      "source_entity_id": "01900000-0001-0011-0000-000000000006",
-      "target_entity_id": "01900000-0001-0010-0000-000000000004",
-      "field_values": {
-        "instrument": "Guitar",
-        "start_year": "1982",
-        "end_year": "1987"
-      }
-    },
-    {
-      "relationship_type": "MemberOf",
-      "source_entity_id": "01900000-0001-0011-0000-000000000006",
-      "target_entity_id": "01900000-0001-0010-0000-000000000003",
-      "field_values": {
-        "instrument": "Guitar",
-        "start_year": "1987",
-        "end_year": "2001"
-      }
-    },
-    {
-      "relationship_type": "MemberOf",
-      "source_entity_id": "01900000-0001-0011-0000-000000000007",
-      "target_entity_id": "01900000-0001-0010-0000-000000000001",
-      "field_values": {
-        "instrument": "Guitar, keyboards",
-        "start_year": "2001"
-      }
-    },
-    {
-      "relationship_type": "MemberOf",
-      "source_entity_id": "01900000-0001-0011-0000-000000000007",
-      "target_entity_id": "01900000-0001-0010-0000-000000000007",
-      "field_values": {
-        "instrument": "Guitar, keyboards",
-        "start_year": "2008"
-      }
-    },
-    {
-      "relationship_type": "MemberOf",
-      "source_entity_id": "01900000-0001-0011-0000-000000000008",
-      "target_entity_id": "01900000-0001-0010-0000-000000000006",
-      "field_values": {
-        "instrument": "Guitar, vocals",
-        "start_year": "1995",
-        "end_year": "1999"
-      }
-    },
-    {
-      "relationship_type": "Released",
-      "source_entity_id": "01900000-0001-0010-0000-000000000002",
-      "target_entity_id": "01900000-0001-0012-0000-000000000001",
-      "field_values": {}
-    },
-    {
-      "relationship_type": "Released",
-      "source_entity_id": "01900000-0001-0010-0000-000000000002",
-      "target_entity_id": "01900000-0001-0012-0000-000000000002",
-      "field_values": {}
-    },
-    {
-      "relationship_type": "Released",
-      "source_entity_id": "01900000-0001-0010-0000-000000000001",
-      "target_entity_id": "01900000-0001-0012-0000-000000000003",
-      "field_values": {}
-    },
-    {
-      "relationship_type": "Released",
-      "source_entity_id": "01900000-0001-0010-0000-000000000001",
-      "target_entity_id": "01900000-0001-0012-0000-000000000004",
-      "field_values": {}
-    },
-    {
-      "relationship_type": "Released",
-      "source_entity_id": "01900000-0001-0010-0000-000000000001",
-      "target_entity_id": "01900000-0001-0012-0000-000000000005",
-      "field_values": {}
-    },
-    {
-      "relationship_type": "Released",
-      "source_entity_id": "01900000-0001-0010-0000-000000000001",
-      "target_entity_id": "01900000-0001-0012-0000-000000000006",
-      "field_values": {}
-    },
-    {
-      "relationship_type": "Released",
-      "source_entity_id": "01900000-0001-0010-0000-000000000001",
-      "target_entity_id": "01900000-0001-0012-0000-000000000007",
-      "field_values": {}
-    },
-    {
-      "relationship_type": "Released",
-      "source_entity_id": "01900000-0001-0010-0000-000000000001",
-      "target_entity_id": "01900000-0001-0012-0000-000000000008",
-      "field_values": {}
-    },
-    {
-      "relationship_type": "Released",
-      "source_entity_id": "01900000-0001-0010-0000-000000000001",
-      "target_entity_id": "01900000-0001-0012-0000-000000000009",
-      "field_values": {}
-    },
-    {
-      "relationship_type": "Released",
-      "source_entity_id": "01900000-0001-0010-0000-000000000001",
-      "target_entity_id": "01900000-0001-0012-0000-000000000010",
-      "field_values": {}
-    },
-    {
-      "relationship_type": "Released",
-      "source_entity_id": "01900000-0001-0010-0000-000000000003",
-      "target_entity_id": "01900000-0001-0012-0000-000000000011",
-      "field_values": {}
-    },
-    {
-      "relationship_type": "Released",
-      "source_entity_id": "01900000-0001-0010-0000-000000000003",
-      "target_entity_id": "01900000-0001-0012-0000-000000000012",
-      "field_values": {}
-    },
-    {
-      "relationship_type": "Released",
-      "source_entity_id": "01900000-0001-0010-0000-000000000003",
-      "target_entity_id": "01900000-0001-0012-0000-000000000013",
-      "field_values": {}
-    },
-    {
-      "relationship_type": "Released",
-      "source_entity_id": "01900000-0001-0010-0000-000000000004",
-      "target_entity_id": "01900000-0001-0012-0000-000000000014",
-      "field_values": {}
-    },
-    {
-      "relationship_type": "Released",
-      "source_entity_id": "01900000-0001-0010-0000-000000000004",
-      "target_entity_id": "01900000-0001-0012-0000-000000000015",
-      "field_values": {}
-    },
-    {
-      "relationship_type": "Released",
-      "source_entity_id": "01900000-0001-0010-0000-000000000004",
-      "target_entity_id": "01900000-0001-0012-0000-000000000016",
-      "field_values": {}
-    },
-    {
-      "relationship_type": "Released",
-      "source_entity_id": "01900000-0001-0010-0000-000000000004",
-      "target_entity_id": "01900000-0001-0012-0000-000000000017",
-      "field_values": {}
-    },
-    {
-      "relationship_type": "Released",
-      "source_entity_id": "01900000-0001-0010-0000-000000000005",
-      "target_entity_id": "01900000-0001-0012-0000-000000000018",
-      "field_values": {}
-    },
-    {
-      "relationship_type": "Released",
-      "source_entity_id": "01900000-0001-0010-0000-000000000006",
-      "target_entity_id": "01900000-0001-0012-0000-000000000019",
-      "field_values": {}
-    }
+
+    { "relationship_type": "MemberOf", "source_entity_id": "person-001", "target_entity_id": "band-002", "field_values": { "instrument": "Guitar, vocals",            "start_year": "1976", "end_year": "1980" } },
+    { "relationship_type": "MemberOf", "source_entity_id": "person-001", "target_entity_id": "band-001", "field_values": { "instrument": "Vocals, guitar, keyboards", "start_year": "1980" } },
+    { "relationship_type": "MemberOf", "source_entity_id": "person-001", "target_entity_id": "band-003", "field_values": { "instrument": "Vocals, guitar, keyboards", "start_year": "1987", "end_year": "2001" } },
+    { "relationship_type": "MemberOf", "source_entity_id": "person-001", "target_entity_id": "band-007", "field_values": { "instrument": "Vocals, guitar, keyboards", "start_year": "2008" } },
+
+    { "relationship_type": "MemberOf", "source_entity_id": "person-002", "target_entity_id": "band-002", "field_values": { "instrument": "Bass guitar",              "start_year": "1976", "end_year": "1980" } },
+    { "relationship_type": "MemberOf", "source_entity_id": "person-002", "target_entity_id": "band-001", "field_values": { "instrument": "Bass guitar",              "start_year": "1980", "end_year": "2007" } },
+    { "relationship_type": "MemberOf", "source_entity_id": "person-002", "target_entity_id": "band-006", "field_values": { "instrument": "Bass guitar, vocals",      "start_year": "1995", "end_year": "1999" } },
+    { "relationship_type": "MemberOf", "source_entity_id": "person-002", "target_entity_id": "band-008", "field_values": { "instrument": "Bass guitar, vocals",      "start_year": "1989", "end_year": "1993" } },
+    { "relationship_type": "MemberOf", "source_entity_id": "person-002", "target_entity_id": "band-009", "field_values": { "instrument": "Bass guitar, vocals",      "start_year": "2010" } },
+
+    { "relationship_type": "MemberOf", "source_entity_id": "person-003", "target_entity_id": "band-002", "field_values": { "instrument": "Drums",                   "start_year": "1977", "end_year": "1980" } },
+    { "relationship_type": "MemberOf", "source_entity_id": "person-003", "target_entity_id": "band-001", "field_values": { "instrument": "Drums, drum machines",    "start_year": "1980" } },
+    { "relationship_type": "MemberOf", "source_entity_id": "person-003", "target_entity_id": "band-005", "field_values": { "instrument": "Drums, programming",      "start_year": "1990" } },
+
+    { "relationship_type": "MemberOf", "source_entity_id": "person-004", "target_entity_id": "band-001", "field_values": { "instrument": "Keyboards, guitar",       "start_year": "1980" } },
+    { "relationship_type": "MemberOf", "source_entity_id": "person-004", "target_entity_id": "band-005", "field_values": { "instrument": "Keyboards, guitar",       "start_year": "1990" } },
+
+    { "relationship_type": "MemberOf", "source_entity_id": "person-005", "target_entity_id": "band-002", "field_values": { "instrument": "Vocals, guitar",           "start_year": "1976", "end_year": "1980" } },
+
+    { "relationship_type": "MemberOf", "source_entity_id": "person-006", "target_entity_id": "band-004", "field_values": { "instrument": "Guitar",                  "start_year": "1982", "end_year": "1987" } },
+    { "relationship_type": "MemberOf", "source_entity_id": "person-006", "target_entity_id": "band-003", "field_values": { "instrument": "Guitar",                  "start_year": "1987", "end_year": "2001" } },
+
+    { "relationship_type": "MemberOf", "source_entity_id": "person-007", "target_entity_id": "band-001", "field_values": { "instrument": "Guitar, keyboards",       "start_year": "2001" } },
+    { "relationship_type": "MemberOf", "source_entity_id": "person-007", "target_entity_id": "band-007", "field_values": { "instrument": "Guitar, keyboards",       "start_year": "2008" } },
+
+    { "relationship_type": "MemberOf", "source_entity_id": "person-008", "target_entity_id": "band-006", "field_values": { "instrument": "Guitar, vocals",           "start_year": "1995", "end_year": "1999" } },
+
+    { "relationship_type": "MemberOf", "source_entity_id": "person-009", "target_entity_id": "band-004", "field_values": { "instrument": "Vocals",                  "start_year": "1982", "end_year": "1987" } },
+
+    { "relationship_type": "MemberOf", "source_entity_id": "person-010", "target_entity_id": "band-004", "field_values": { "instrument": "Bass guitar",             "start_year": "1982", "end_year": "1987" } },
+
+    { "relationship_type": "MemberOf", "source_entity_id": "person-011", "target_entity_id": "band-004", "field_values": { "instrument": "Drums",                   "start_year": "1982", "end_year": "1987" } },
+
+    { "relationship_type": "MemberOf", "source_entity_id": "person-012", "target_entity_id": "band-010", "field_values": { "instrument": "Vocals",                  "start_year": "1981" } },
+
+    { "relationship_type": "Released", "source_entity_id": "band-002", "target_entity_id": "album-001", "field_values": {} },
+    { "relationship_type": "Released", "source_entity_id": "band-002", "target_entity_id": "album-002", "field_values": {} },
+    { "relationship_type": "Released", "source_entity_id": "band-001", "target_entity_id": "album-003", "field_values": {} },
+    { "relationship_type": "Released", "source_entity_id": "band-001", "target_entity_id": "album-004", "field_values": {} },
+    { "relationship_type": "Released", "source_entity_id": "band-001", "target_entity_id": "album-005", "field_values": {} },
+    { "relationship_type": "Released", "source_entity_id": "band-001", "target_entity_id": "album-006", "field_values": {} },
+    { "relationship_type": "Released", "source_entity_id": "band-001", "target_entity_id": "album-007", "field_values": {} },
+    { "relationship_type": "Released", "source_entity_id": "band-001", "target_entity_id": "album-008", "field_values": {} },
+    { "relationship_type": "Released", "source_entity_id": "band-001", "target_entity_id": "album-009", "field_values": {} },
+    { "relationship_type": "Released", "source_entity_id": "band-001", "target_entity_id": "album-010", "field_values": {} },
+    { "relationship_type": "Released", "source_entity_id": "band-001", "target_entity_id": "album-011", "field_values": {} },
+    { "relationship_type": "Released", "source_entity_id": "band-003", "target_entity_id": "album-012", "field_values": {} },
+    { "relationship_type": "Released", "source_entity_id": "band-003", "target_entity_id": "album-013", "field_values": {} },
+    { "relationship_type": "Released", "source_entity_id": "band-003", "target_entity_id": "album-014", "field_values": {} },
+    { "relationship_type": "Released", "source_entity_id": "band-004", "target_entity_id": "album-015", "field_values": {} },
+    { "relationship_type": "Released", "source_entity_id": "band-004", "target_entity_id": "album-016", "field_values": {} },
+    { "relationship_type": "Released", "source_entity_id": "band-004", "target_entity_id": "album-017", "field_values": {} },
+    { "relationship_type": "Released", "source_entity_id": "band-004", "target_entity_id": "album-018", "field_values": {} },
+    { "relationship_type": "Released", "source_entity_id": "band-005", "target_entity_id": "album-019", "field_values": {} },
+    { "relationship_type": "Released", "source_entity_id": "band-005", "target_entity_id": "album-020", "field_values": {} },
+    { "relationship_type": "Released", "source_entity_id": "band-006", "target_entity_id": "album-021", "field_values": {} },
+    { "relationship_type": "Released", "source_entity_id": "band-008", "target_entity_id": "album-022", "field_values": {} },
+
+    { "relationship_type": "ReleasedBy", "source_entity_id": "song-001", "target_entity_id": "band-002", "field_values": {} },
+    { "relationship_type": "ReleasedBy", "source_entity_id": "song-002", "target_entity_id": "band-002", "field_values": {} },
+    { "relationship_type": "ReleasedBy", "source_entity_id": "song-003", "target_entity_id": "band-001", "field_values": {} },
+    { "relationship_type": "ReleasedBy", "source_entity_id": "song-004", "target_entity_id": "band-001", "field_values": {} },
+    { "relationship_type": "ReleasedBy", "source_entity_id": "song-005", "target_entity_id": "band-001", "field_values": {} },
+    { "relationship_type": "ReleasedBy", "source_entity_id": "song-006", "target_entity_id": "band-001", "field_values": {} },
+    { "relationship_type": "ReleasedBy", "source_entity_id": "song-007", "target_entity_id": "band-001", "field_values": {} },
+    { "relationship_type": "ReleasedBy", "source_entity_id": "song-008", "target_entity_id": "band-001", "field_values": {} },
+    { "relationship_type": "ReleasedBy", "source_entity_id": "song-009", "target_entity_id": "band-001", "field_values": {} },
+    { "relationship_type": "ReleasedBy", "source_entity_id": "song-010", "target_entity_id": "band-001", "field_values": {} },
+    { "relationship_type": "ReleasedBy", "source_entity_id": "song-011", "target_entity_id": "band-001", "field_values": {} },
+    { "relationship_type": "ReleasedBy", "source_entity_id": "song-012", "target_entity_id": "band-001", "field_values": {} },
+    { "relationship_type": "ReleasedBy", "source_entity_id": "song-013", "target_entity_id": "band-001", "field_values": {} },
+    { "relationship_type": "ReleasedBy", "source_entity_id": "song-014", "target_entity_id": "band-001", "field_values": {} },
+    { "relationship_type": "ReleasedBy", "source_entity_id": "song-015", "target_entity_id": "band-001", "field_values": {} },
+    { "relationship_type": "ReleasedBy", "source_entity_id": "song-016", "target_entity_id": "band-001", "field_values": {} },
+    { "relationship_type": "ReleasedBy", "source_entity_id": "song-017", "target_entity_id": "band-001", "field_values": {} },
+    { "relationship_type": "ReleasedBy", "source_entity_id": "song-018", "target_entity_id": "band-001", "field_values": {} },
+    { "relationship_type": "ReleasedBy", "source_entity_id": "song-019", "target_entity_id": "band-001", "field_values": {} },
+    { "relationship_type": "ReleasedBy", "source_entity_id": "song-020", "target_entity_id": "band-001", "field_values": {} },
+    { "relationship_type": "ReleasedBy", "source_entity_id": "song-021", "target_entity_id": "band-003", "field_values": {} },
+    { "relationship_type": "ReleasedBy", "source_entity_id": "song-022", "target_entity_id": "band-003", "field_values": {} },
+    { "relationship_type": "ReleasedBy", "source_entity_id": "song-023", "target_entity_id": "band-003", "field_values": {} },
+    { "relationship_type": "ReleasedBy", "source_entity_id": "song-024", "target_entity_id": "band-003", "field_values": {} },
+    { "relationship_type": "ReleasedBy", "source_entity_id": "song-025", "target_entity_id": "band-004", "field_values": {} },
+    { "relationship_type": "ReleasedBy", "source_entity_id": "song-026", "target_entity_id": "band-004", "field_values": {} },
+    { "relationship_type": "ReleasedBy", "source_entity_id": "song-027", "target_entity_id": "band-004", "field_values": {} },
+    { "relationship_type": "ReleasedBy", "source_entity_id": "song-028", "target_entity_id": "band-004", "field_values": {} },
+    { "relationship_type": "ReleasedBy", "source_entity_id": "song-029", "target_entity_id": "band-004", "field_values": {} },
+    { "relationship_type": "ReleasedBy", "source_entity_id": "song-030", "target_entity_id": "band-004", "field_values": {} },
+    { "relationship_type": "ReleasedBy", "source_entity_id": "song-031", "target_entity_id": "band-004", "field_values": {} },
+    { "relationship_type": "ReleasedBy", "source_entity_id": "song-032", "target_entity_id": "band-004", "field_values": {} },
+    { "relationship_type": "ReleasedBy", "source_entity_id": "song-033", "target_entity_id": "band-004", "field_values": {} },
+    { "relationship_type": "ReleasedBy", "source_entity_id": "song-034", "target_entity_id": "band-004", "field_values": {} },
+    { "relationship_type": "ReleasedBy", "source_entity_id": "song-035", "target_entity_id": "band-004", "field_values": {} },
+    { "relationship_type": "ReleasedBy", "source_entity_id": "song-036", "target_entity_id": "band-004", "field_values": {} },
+    { "relationship_type": "ReleasedBy", "source_entity_id": "song-037", "target_entity_id": "band-004", "field_values": {} },
+    { "relationship_type": "ReleasedBy", "source_entity_id": "song-038", "target_entity_id": "band-004", "field_values": {} },
+    { "relationship_type": "ReleasedBy", "source_entity_id": "song-039", "target_entity_id": "band-004", "field_values": {} },
+    { "relationship_type": "ReleasedBy", "source_entity_id": "song-040", "target_entity_id": "band-004", "field_values": {} },
+
+    { "relationship_type": "AppearsOn", "source_entity_id": "song-005", "target_entity_id": "album-004", "field_values": {} },
+    { "relationship_type": "AppearsOn", "source_entity_id": "song-007", "target_entity_id": "album-005", "field_values": {} },
+    { "relationship_type": "AppearsOn", "source_entity_id": "song-008", "target_entity_id": "album-005", "field_values": {} },
+    { "relationship_type": "AppearsOn", "source_entity_id": "song-010", "target_entity_id": "album-006", "field_values": {} },
+    { "relationship_type": "AppearsOn", "source_entity_id": "song-013", "target_entity_id": "album-007", "field_values": {} },
+    { "relationship_type": "AppearsOn", "source_entity_id": "song-014", "target_entity_id": "album-007", "field_values": {} },
+    { "relationship_type": "AppearsOn", "source_entity_id": "song-016", "target_entity_id": "album-008", "field_values": {} },
+    { "relationship_type": "AppearsOn", "source_entity_id": "song-017", "target_entity_id": "album-009", "field_values": {} },
+    { "relationship_type": "AppearsOn", "source_entity_id": "song-018", "target_entity_id": "album-009", "field_values": {} },
+    { "relationship_type": "AppearsOn", "source_entity_id": "song-020", "target_entity_id": "album-010", "field_values": {} },
+    { "relationship_type": "AppearsOn", "source_entity_id": "song-022", "target_entity_id": "album-012", "field_values": {} },
+    { "relationship_type": "AppearsOn", "source_entity_id": "song-023", "target_entity_id": "album-012", "field_values": {} },
+    { "relationship_type": "AppearsOn", "source_entity_id": "song-026", "target_entity_id": "album-015", "field_values": {} },
+    { "relationship_type": "AppearsOn", "source_entity_id": "song-027", "target_entity_id": "album-015", "field_values": {} },
+    { "relationship_type": "AppearsOn", "source_entity_id": "song-028", "target_entity_id": "album-015", "field_values": {} },
+    { "relationship_type": "AppearsOn", "source_entity_id": "song-030", "target_entity_id": "album-016", "field_values": {} },
+    { "relationship_type": "AppearsOn", "source_entity_id": "song-032", "target_entity_id": "album-017", "field_values": {} },
+    { "relationship_type": "AppearsOn", "source_entity_id": "song-033", "target_entity_id": "album-017", "field_values": {} },
+    { "relationship_type": "AppearsOn", "source_entity_id": "song-038", "target_entity_id": "album-018", "field_values": {} },
+    { "relationship_type": "AppearsOn", "source_entity_id": "song-039", "target_entity_id": "album-018", "field_values": {} },
+    { "relationship_type": "AppearsOn", "source_entity_id": "song-040", "target_entity_id": "album-018", "field_values": {} },
+
+    { "relationship_type": "GuestOn", "source_entity_id": "person-012", "target_entity_id": "song-021", "field_values": { "contribution": "Lead vocals" } },
+    { "relationship_type": "GuestOn", "source_entity_id": "person-012", "target_entity_id": "song-022", "field_values": { "contribution": "Vocals" } },
+    { "relationship_type": "GuestOn", "source_entity_id": "person-012", "target_entity_id": "song-024", "field_values": { "contribution": "Vocals" } }
+
   ]
 }

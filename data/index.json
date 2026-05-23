@@ -1,6 +1,11 @@
 {
   "files": [
     {
+      "path": "music-export.json",
+      "title": "Info Builder Music Store",
+      "description": "An export from the Info Builder project. The Music Store."
+    },
+    {
       "path": "sample-product.json",
       "title": "Sample Product Catalog",
       "description": "A small product catalog showing nested arrays, prices, and stock data."

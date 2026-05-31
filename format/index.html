@@ -1,0 +1,576 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <title>JSON Format · InfoBuilder JSON Store</title>
+    <meta name="description" content="Reference documentation for the InfoBuilder JSON export/import format. Covers all fields, data types, and validation rules." />
+    <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="/assets/css/styles.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="site-header__inner">
+        <a class="site-title" href="/">
+          <span class="site-title__mark">{ }</span>
+          InfoBuilder JSON Store
+        </a>
+        <nav class="site-nav">
+          <a href="/">Browse</a>
+          <a href="/format/" aria-current="page">Format</a>
+          <a href="/about/">About</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="prose">
+      <h1>JSON Format Reference</h1>
+      <p>
+        This page documents the JSON format used by <strong>InfoBuilder</strong> for
+        exporting and importing stores. It is intended for both humans and automated
+        systems (AI agents, scripts, integrations) that need to produce or consume
+        InfoBuilder-compatible files.
+      </p>
+      <p>
+        A JSON Schema (draft-07) is included at the <a href="#json-schema">bottom of this page</a>
+        for machine validation.
+      </p>
+
+      <h2 id="top-level-structure">Top-level structure</h2>
+      <p>Every InfoBuilder export is a single JSON object with these root keys:</p>
+      <pre><code>{
+  "version": 1,
+  "exportedAt": "2025-05-31T14:30:00.000Z",
+  "store": { ... },
+  "entityTypes": [ ... ],
+  "relationshipTypes": [ ... ],
+  "entities": [ ... ],
+  "relationships": [ ... ]
+}</code></pre>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Key</th>
+            <th>Type</th>
+            <th>Required</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>version</code></td>
+            <td>integer</td>
+            <td>Yes</td>
+            <td>Export format version. Must be <code>1</code>.</td>
+          </tr>
+          <tr>
+            <td><code>exportedAt</code></td>
+            <td>string (ISO-8601)</td>
+            <td>Yes</td>
+            <td>UTC timestamp of when the export was generated.</td>
+          </tr>
+          <tr>
+            <td><code>store</code></td>
+            <td>object</td>
+            <td>Yes</td>
+            <td>Store metadata (name, description).</td>
+          </tr>
+          <tr>
+            <td><code>entityTypes</code></td>
+            <td>array</td>
+            <td>Yes</td>
+            <td>Schema definitions for each kind of entity.</td>
+          </tr>
+          <tr>
+            <td><code>relationshipTypes</code></td>
+            <td>array</td>
+            <td>Yes</td>
+            <td>Schema definitions for each kind of relationship.</td>
+          </tr>
+          <tr>
+            <td><code>entities</code></td>
+            <td>array</td>
+            <td>Yes</td>
+            <td>Actual entity instances.</td>
+          </tr>
+          <tr>
+            <td><code>relationships</code></td>
+            <td>array</td>
+            <td>Yes</td>
+            <td>Actual relationship instances.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2 id="store"><code>store</code></h2>
+      <p>Metadata for the store being exported:</p>
+      <pre><code>{
+  "name": "My Contacts",
+  "description": "People, organisations, and meetings."
+}</code></pre>
+
+      <table>
+        <thead>
+          <tr><th>Key</th><th>Type</th><th>Required</th><th>Description</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>name</code></td>
+            <td>string</td>
+            <td>Yes</td>
+            <td>Store name. Must be non-empty after trimming whitespace.</td>
+          </tr>
+          <tr>
+            <td><code>description</code></td>
+            <td>string | null</td>
+            <td>No</td>
+            <td>Optional human-readable description of the store's purpose.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2 id="entity-types"><code>entityTypes</code></h2>
+      <p>
+        An array of entity type definitions. Each entity type defines a <em>kind</em> of
+        object in the store (e.g. "Person", "Organisation", "Album"). Names must be
+        unique within the export.
+      </p>
+      <pre><code>{
+  "name": "person",
+  "display_name": "Person",
+  "icon": "person",
+  "fields": [ ... ]
+}</code></pre>
+
+      <table>
+        <thead>
+          <tr><th>Key</th><th>Type</th><th>Required</th><th>Description</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>name</code></td>
+            <td>string</td>
+            <td>Yes</td>
+            <td>Machine-readable identifier used to reference this type in entity instances and relationship type definitions.</td>
+          </tr>
+          <tr>
+            <td><code>display_name</code></td>
+            <td>string</td>
+            <td>Yes</td>
+            <td>Human-readable label shown in the InfoBuilder UI.</td>
+          </tr>
+          <tr>
+            <td><code>icon</code></td>
+            <td>string | null</td>
+            <td>No</td>
+            <td>Lowercase alphanumeric slug (e.g. <code>"person"</code>, <code>"briefcase"</code>). Must match <code>/^[a-z0-9-]{1,40}$/</code> or be <code>null</code>.</td>
+          </tr>
+          <tr>
+            <td><code>fields</code></td>
+            <td>array</td>
+            <td>No</td>
+            <td>Array of <a href="#field-definition">field definitions</a>. Defaults to empty.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2 id="relationship-types"><code>relationshipTypes</code></h2>
+      <p>
+        An array of relationship type definitions. Each describes a named link between
+        two entity types (e.g. "WorksFor" from "person" to "organisation"). Names must
+        be unique within the export.
+      </p>
+      <pre><code>{
+  "name": "WorksFor",
+  "source_entity_type": "person",
+  "target_entity_type": "organisation",
+  "directed": true,
+  "inverse_label": "Employs",
+  "fields": [ ... ]
+}</code></pre>
+
+      <table>
+        <thead>
+          <tr><th>Key</th><th>Type</th><th>Required</th><th>Description</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>name</code></td>
+            <td>string</td>
+            <td>Yes</td>
+            <td>Machine-readable identifier used to reference this type in relationship instances.</td>
+          </tr>
+          <tr>
+            <td><code>source_entity_type</code></td>
+            <td>string</td>
+            <td>Yes</td>
+            <td>The <code>name</code> of the entity type that is the source (origin) of this relationship.</td>
+          </tr>
+          <tr>
+            <td><code>target_entity_type</code></td>
+            <td>string</td>
+            <td>Yes</td>
+            <td>The <code>name</code> of the entity type that is the target (destination) of this relationship.</td>
+          </tr>
+          <tr>
+            <td><code>directed</code></td>
+            <td>boolean</td>
+            <td>No</td>
+            <td>Whether the relationship is one-way (<code>true</code>) or bidirectional (<code>false</code>). Defaults to <code>true</code> on import if omitted.</td>
+          </tr>
+          <tr>
+            <td><code>inverse_label</code></td>
+            <td>string | null</td>
+            <td>No</td>
+            <td>Label to read the relationship in the opposite direction (e.g. "Employs" is the inverse of "WorksFor"). Nullable.</td>
+          </tr>
+          <tr>
+            <td><code>fields</code></td>
+            <td>array</td>
+            <td>No</td>
+            <td>Array of <a href="#field-definition">field definitions</a> for attributes on the relationship itself. Defaults to empty.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2 id="field-definition">Field definition</h2>
+      <p>
+        Both entity types and relationship types can carry an array of field definitions.
+        Each field definition describes one attribute that instances of that type can hold.
+      </p>
+      <pre><code>{
+  "name": "email",
+  "data_type": "email",
+  "required": false,
+  "display_order": 1
+}</code></pre>
+
+      <table>
+        <thead>
+          <tr><th>Key</th><th>Type</th><th>Required</th><th>Description</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>name</code></td>
+            <td>string</td>
+            <td>Yes</td>
+            <td>Field name. Used as the key in <code>field_values</code> on instances.</td>
+          </tr>
+          <tr>
+            <td><code>data_type</code></td>
+            <td>string (enum)</td>
+            <td>Yes</td>
+            <td>The field's data type. See valid values below.</td>
+          </tr>
+          <tr>
+            <td><code>required</code></td>
+            <td>boolean</td>
+            <td>No</td>
+            <td>Whether the field must be present when creating or updating instances. Defaults to <code>false</code>.</td>
+          </tr>
+          <tr>
+            <td><code>display_order</code></td>
+            <td>integer</td>
+            <td>No</td>
+            <td>Position in UI forms and tables (0 = first). Defaults to <code>0</code>.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3 id="data-types">Valid <code>data_type</code> values</h3>
+      <table>
+        <thead>
+          <tr><th>Value</th><th>Description</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><code>string</code></td><td>Short single-line text.</td></tr>
+          <tr><td><code>text</code></td><td>Long multi-line text.</td></tr>
+          <tr><td><code>email</code></td><td>Email address.</td></tr>
+          <tr><td><code>phone</code></td><td>Phone number.</td></tr>
+          <tr><td><code>url</code></td><td>Web URL.</td></tr>
+          <tr><td><code>date</code></td><td>Calendar date (e.g. <code>2025-05-31</code>).</td></tr>
+          <tr><td><code>datetime</code></td><td>Date and time (ISO-8601, e.g. <code>2025-05-31T14:30:00Z</code>).</td></tr>
+          <tr><td><code>partial_date</code></td><td>Partial date where day or month may be unknown (e.g. <code>2025-05</code> or <code>2025</code>).</td></tr>
+        </tbody>
+      </table>
+
+      <h2 id="entities"><code>entities</code></h2>
+      <p>
+        An array of actual entity instances. Each instance belongs to one of the entity types
+        defined in <code>entityTypes</code>.
+      </p>
+      <pre><code>{
+  "_id": "550e8400-e29b-41d4-a716-446655440000",
+  "entity_type": "person",
+  "field_values": {
+    "full_name": "Alice Johnson",
+    "email": "alice@example.com",
+    "birthday": "1990-03-15"
+  }
+}</code></pre>
+
+      <table>
+        <thead>
+          <tr><th>Key</th><th>Type</th><th>Required</th><th>Description</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>_id</code></td>
+            <td>string (UUID)</td>
+            <td>Yes</td>
+            <td>The entity's original UUID. Prefixed with <code>_</code> to avoid namespace conflicts. Used during import to re-link relationships; a new UUID is assigned on import.</td>
+          </tr>
+          <tr>
+            <td><code>entity_type</code></td>
+            <td>string</td>
+            <td>Yes</td>
+            <td>Must match the <code>name</code> of an entry in <code>entityTypes</code>.</td>
+          </tr>
+          <tr>
+            <td><code>field_values</code></td>
+            <td>object</td>
+            <td>No</td>
+            <td>Key-value pairs of field data. Keys are field names from the entity type's <code>fields</code> array. Values are arbitrary JSON (string, number, boolean, null).</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2 id="relationships"><code>relationships</code></h2>
+      <p>
+        An array of actual relationship instances. Each instance connects two entities
+        via one of the relationship types defined in <code>relationshipTypes</code>.
+        Relationships with missing entity references are silently skipped on import.
+      </p>
+      <pre><code>{
+  "relationship_type": "WorksFor",
+  "source_entity_id": "550e8400-e29b-41d4-a716-446655440000",
+  "target_entity_id": "660e8400-e29b-41d4-a716-446655440001",
+  "field_values": {
+    "job_title": "Senior Engineer",
+    "start_date": "2020-01-15"
+  }
+}</code></pre>
+
+      <table>
+        <thead>
+          <tr><th>Key</th><th>Type</th><th>Required</th><th>Description</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>relationship_type</code></td>
+            <td>string</td>
+            <td>Yes</td>
+            <td>Must match the <code>name</code> of an entry in <code>relationshipTypes</code>.</td>
+          </tr>
+          <tr>
+            <td><code>source_entity_id</code></td>
+            <td>string (UUID)</td>
+            <td>Yes</td>
+            <td>Must match the <code>_id</code> of an entity in <code>entities</code>.</td>
+          </tr>
+          <tr>
+            <td><code>target_entity_id</code></td>
+            <td>string (UUID)</td>
+            <td>Yes</td>
+            <td>Must match the <code>_id</code> of an entity in <code>entities</code>.</td>
+          </tr>
+          <tr>
+            <td><code>field_values</code></td>
+            <td>object</td>
+            <td>No</td>
+            <td>Key-value pairs of relationship attribute data. Keys are field names from the relationship type's <code>fields</code> array.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2 id="complete-example">Complete example</h2>
+      <p>A minimal but complete export with two entity types, one relationship type, two entities, and one relationship:</p>
+      <pre><code>{
+  "version": 1,
+  "exportedAt": "2025-05-31T14:30:22.456Z",
+  "store": {
+    "name": "My Contacts",
+    "description": "People and the organisations they work for."
+  },
+  "entityTypes": [
+    {
+      "name": "person",
+      "display_name": "Person",
+      "icon": "person",
+      "fields": [
+        { "name": "full_name",  "data_type": "string", "required": true,  "display_order": 0 },
+        { "name": "email",      "data_type": "email",  "required": false, "display_order": 1 },
+        { "name": "birthday",   "data_type": "date",   "required": false, "display_order": 2 }
+      ]
+    },
+    {
+      "name": "organisation",
+      "display_name": "Organisation",
+      "icon": "briefcase",
+      "fields": [
+        { "name": "name",    "data_type": "string", "required": true,  "display_order": 0 },
+        { "name": "website", "data_type": "url",    "required": false, "display_order": 1 }
+      ]
+    }
+  ],
+  "relationshipTypes": [
+    {
+      "name": "WorksFor",
+      "source_entity_type": "person",
+      "target_entity_type": "organisation",
+      "directed": true,
+      "inverse_label": "Employs",
+      "fields": [
+        { "name": "job_title",  "data_type": "string", "required": false, "display_order": 0 },
+        { "name": "start_date", "data_type": "date",   "required": false, "display_order": 1 }
+      ]
+    }
+  ],
+  "entities": [
+    {
+      "_id": "550e8400-e29b-41d4-a716-446655440000",
+      "entity_type": "person",
+      "field_values": {
+        "full_name": "Alice Johnson",
+        "email": "alice@example.com",
+        "birthday": "1990-03-15"
+      }
+    },
+    {
+      "_id": "660e8400-e29b-41d4-a716-446655440001",
+      "entity_type": "organisation",
+      "field_values": {
+        "name": "Acme Corp",
+        "website": "https://acme.example.com"
+      }
+    }
+  ],
+  "relationships": [
+    {
+      "relationship_type": "WorksFor",
+      "source_entity_id": "550e8400-e29b-41d4-a716-446655440000",
+      "target_entity_id": "660e8400-e29b-41d4-a716-446655440001",
+      "field_values": {
+        "job_title": "Senior Engineer",
+        "start_date": "2020-01-15"
+      }
+    }
+  ]
+}</code></pre>
+
+      <h2 id="validation-rules">Import validation rules</h2>
+      <p>InfoBuilder enforces these rules when a file is imported. Files that fail validation are rejected with an error; the existing stores are never modified.</p>
+      <ul>
+        <li><code>version</code> must equal <code>1</code>.</li>
+        <li><code>store.name</code> must be present and non-empty after trimming whitespace.</li>
+        <li>All <code>entityTypes[].name</code> values must be unique within the file.</li>
+        <li>All <code>relationshipTypes[].name</code> values must be unique within the file.</li>
+        <li>Each <code>relationshipTypes[].source_entity_type</code> and <code>target_entity_type</code> must match a <code>name</code> in <code>entityTypes</code>.</li>
+        <li>Each <code>entities[].entity_type</code> must match a <code>name</code> in <code>entityTypes</code>.</li>
+        <li>Each <code>relationships[].relationship_type</code> must match a <code>name</code> in <code>relationshipTypes</code>.</li>
+        <li>Each <code>relationships[].source_entity_id</code> and <code>target_entity_id</code> must match a <code>_id</code> in <code>entities</code> (relationships with missing references are silently skipped, not rejected).</li>
+        <li>Each <code>data_type</code> value must be one of the eight valid types listed above.</li>
+        <li>Each <code>icon</code> slug must match <code>/^[a-z0-9-]{1,40}$/</code> or be <code>null</code>.</li>
+      </ul>
+      <p>Import always creates a <strong>new</strong> store — it never overwrites an existing one. All IDs are re-generated as fresh UUIDs on import.</p>
+
+      <h2 id="json-schema">JSON Schema (draft-07)</h2>
+      <p>
+        The following JSON Schema can be used to validate an InfoBuilder export file
+        programmatically. Copy the schema block and pass it to any JSON Schema validator.
+      </p>
+      <pre><code>{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "InfoBuilder Export Format",
+  "description": "Schema for InfoBuilder version-1 store export/import files.",
+  "type": "object",
+  "required": ["version", "exportedAt", "store", "entityTypes", "relationshipTypes", "entities", "relationships"],
+  "additionalProperties": false,
+  "properties": {
+    "version":           { "type": "integer", "const": 1 },
+    "exportedAt":        { "type": "string", "format": "date-time" },
+    "store":             { "$ref": "#/definitions/Store" },
+    "entityTypes":       { "type": "array", "items": { "$ref": "#/definitions/EntityTypeDefinition" } },
+    "relationshipTypes": { "type": "array", "items": { "$ref": "#/definitions/RelationshipTypeDefinition" } },
+    "entities":          { "type": "array", "items": { "$ref": "#/definitions/EntityInstance" } },
+    "relationships":     { "type": "array", "items": { "$ref": "#/definitions/RelationshipInstance" } }
+  },
+  "definitions": {
+    "Store": {
+      "type": "object",
+      "required": ["name"],
+      "additionalProperties": false,
+      "properties": {
+        "name":        { "type": "string", "minLength": 1 },
+        "description": { "type": ["string", "null"] }
+      }
+    },
+    "FieldDefinition": {
+      "type": "object",
+      "required": ["name", "data_type"],
+      "additionalProperties": false,
+      "properties": {
+        "name":          { "type": "string" },
+        "data_type":     { "type": "string", "enum": ["string", "text", "email", "phone", "url", "date", "datetime", "partial_date"] },
+        "required":      { "type": "boolean", "default": false },
+        "display_order": { "type": "integer", "default": 0 }
+      }
+    },
+    "EntityTypeDefinition": {
+      "type": "object",
+      "required": ["name", "display_name"],
+      "additionalProperties": false,
+      "properties": {
+        "name":         { "type": "string" },
+        "display_name": { "type": "string" },
+        "icon":         { "type": ["string", "null"], "pattern": "^[a-z0-9-]{1,40}$" },
+        "fields":       { "type": "array", "items": { "$ref": "#/definitions/FieldDefinition" }, "default": [] }
+      }
+    },
+    "RelationshipTypeDefinition": {
+      "type": "object",
+      "required": ["name", "source_entity_type", "target_entity_type"],
+      "additionalProperties": false,
+      "properties": {
+        "name":                 { "type": "string" },
+        "source_entity_type":   { "type": "string" },
+        "target_entity_type":   { "type": "string" },
+        "directed":             { "type": "boolean", "default": true },
+        "inverse_label":        { "type": ["string", "null"] },
+        "fields":               { "type": "array", "items": { "$ref": "#/definitions/FieldDefinition" }, "default": [] }
+      }
+    },
+    "EntityInstance": {
+      "type": "object",
+      "required": ["_id", "entity_type"],
+      "additionalProperties": false,
+      "properties": {
+        "_id":          { "type": "string" },
+        "entity_type":  { "type": "string" },
+        "field_values": { "type": "object" }
+      }
+    },
+    "RelationshipInstance": {
+      "type": "object",
+      "required": ["relationship_type", "source_entity_id", "target_entity_id"],
+      "additionalProperties": false,
+      "properties": {
+        "relationship_type":  { "type": "string" },
+        "source_entity_id":   { "type": "string" },
+        "target_entity_id":   { "type": "string" },
+        "field_values":       { "type": "object" }
+      }
+    }
+  }
+}</code></pre>
+
+      <p><a href="/">← Back to file list</a></p>
+    </main>
+
+    <footer class="site-footer">
+      <p>Static viewer · Hosted on Cloudflare Pages · <a href="/about/">About this project</a></p>
+    </footer>
+  </body>
+</html>

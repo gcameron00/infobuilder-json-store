@@ -402,6 +402,27 @@ code {
   border-radius: 0.3rem;
 }
 
+/* Prose tables */
+.prose table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 1rem 0 1.5rem;
+  font-size: 0.9rem;
+}
+
+.prose th,
+.prose td {
+  border: 1px solid var(--color-border);
+  padding: 0.4rem 0.7rem;
+  text-align: left;
+  vertical-align: top;
+}
+
+.prose th {
+  background: var(--color-code-bg);
+  font-weight: 600;
+}
+
 /* Footer */
 .site-footer {
   border-top: 1px solid var(--color-border);
